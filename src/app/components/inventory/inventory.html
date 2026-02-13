@@ -1,0 +1,101 @@
+<div class="inventory-container">
+  <!-- Header / Actions -->
+  <div class="inventory-header">
+    <input nz-input placeholder="Search items..." class="search-input" />
+    <button nz-button nzType="primary" (click)="openModal()">Add Item</button>
+  </div>
+
+  <!-- Inventory Table -->
+  <nz-table #inventoryTable [nzBordered]="true">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>SKU</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of inventoryList">
+        <td>{{ item.name }}</td>
+        <td>{{ item.sku }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>
+          <nz-tag [nzColor]="getStatusColor(item.status)">{{ item.status }}</nz-tag>
+        </td>
+        <td>
+          <button nz-button nzType="default" nzSize="small" (click)="editItem(item)">
+            <span nz-icon nzType="edit"></span>
+
+          </button>
+          <button nz-button nzType="default" nzSize="small" nzDanger (click)="deleteItem(item)">
+            <span nz-icon nzType="delete"></span>
+
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <!-- Add/Edit Item Modal -->
+  <nz-modal [(nzVisible)]="isModalVisible" [nzTitle]="modalTitle" (nzOnCancel)="closeModal()" (nzOnOk)="submitForm()" [nzOkDisabled]="!inventoryForm.valid">
+    <ng-container *nzModalContent>
+      <form [formGroup]="inventoryForm" nz-form>
+        <nz-row [nzGutter]="16" nzAlign="middle">
+          <nz-col nzSpan="12">
+            <nz-form-label nzNoColon>Name</nz-form-label>
+            <nz-form-item>
+              <nz-form-control>
+                <input nz-input formControlName="name" />
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+
+          <nz-col nzSpan="12">
+            <nz-form-label nzNoColon>SKU</nz-form-label>
+            <nz-form-item>
+              <nz-form-control>
+                <input nz-input formControlName="sku" />
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+
+          <nz-col nzSpan="12">
+            <nz-form-label nzNoColon>Category</nz-form-label>
+            <nz-form-item>
+              <nz-form-control>
+                <input nz-input formControlName="category" />
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+
+          <nz-col nzSpan="12">
+            <nz-form-label nzNoColon>Quantity</nz-form-label>
+            <nz-form-item>
+              <nz-form-control>
+                <input nz-input type="number" formControlName="quantity" />
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+
+          <nz-col nzSpan="12">
+            <nz-form-label nzNoColon>Status</nz-form-label>
+            <nz-form-item>
+              <nz-form-control>
+                <nz-select formControlName="status">
+                  <nz-option nzValue="Active" nzLabel="Active"></nz-option>
+                  <nz-option nzValue="Low Stock" nzLabel="Low Stock"></nz-option>
+                  <nz-option nzValue="Out of Stock" nzLabel="Out of Stock"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </nz-col>
+        </nz-row>
+      </form>
+    </ng-container>
+  </nz-modal>
+
+</div>

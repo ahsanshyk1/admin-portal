@@ -1,0 +1,48 @@
+.dashboard-container {
+  padding: 16px;
+
+  .summary-cards {
+    margin-bottom: 24px;
+
+    .summary-card {
+      background: #001529;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      height: 100px;
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+
+        .card-title {
+          font-size: 14px;
+          opacity: 0.8;
+        }
+
+        .card-value {
+          font-size: 24px;
+          font-weight: 600;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
+  .recent-activity {
+    nz-card {
+      width: 100%;
+
+      nz-table {
+
+        th,
+        td {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

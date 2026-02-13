@@ -1,0 +1,82 @@
+<div class="dashboard-container">
+  <!-- Summary Cards -->
+  <div class="summary-cards">
+    <nz-row [nzGutter]="16">
+      <nz-col nzSpan="6">
+        <nz-card class="summary-card">
+          <div class="card-content">
+            <span class="card-title">Total Items</span>
+            <span class="card-value">1,245</span>
+          </div>
+        </nz-card>
+      </nz-col>
+
+      <nz-col nzSpan="6">
+        <nz-card class="summary-card">
+          <div class="card-content">
+            <span class="card-title">Low Stock</span>
+            <span class="card-value">78</span>
+          </div>
+        </nz-card>
+      </nz-col>
+
+      <nz-col nzSpan="6">
+        <nz-card class="summary-card">
+          <div class="card-content">
+            <span class="card-title">Warehouses</span>
+            <span class="card-value">5</span>
+          </div>
+        </nz-card>
+      </nz-col>
+
+      <nz-col nzSpan="6">
+        <nz-card class="summary-card">
+          <div class="card-content">
+            <span class="card-title">Orders</span>
+            <span class="card-value">342</span>
+          </div>
+        </nz-card>
+      </nz-col>
+    </nz-row>
+  </div>
+
+  <!-- Recent Activity Table -->
+  <div class="recent-activity">
+    <nz-card nzTitle="Recent Stock Movements">
+      <nz-table #recentTable [nzBordered]="true" [nzBordered]="true">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Warehouse</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Laptop</td>
+            <td>10</td>
+            <td>In</td>
+            <td>2026-02-13</td>
+            <td>Warehouse A</td>
+          </tr>
+          <tr>
+            <td>Mouse</td>
+            <td>5</td>
+            <td>Out</td>
+            <td>2026-02-12</td>
+            <td>Warehouse B</td>
+          </tr>
+          <tr>
+            <td>Keyboard</td>
+            <td>3</td>
+            <td>In</td>
+            <td>2026-02-11</td>
+            <td>Warehouse C</td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </nz-card>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="user" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" nzPlacement="bottomRight">
+  <nz-avatar nzText="A" nzSize="small" style="margin-right: 8px"></nz-avatar>
+  <div class="user-info">
+    <span class="user-name">Ahsan</span>
+  </div>
+  <i nz-icon nzType="down" class="user-down"></i>
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item>Change Password</li>
+    <li nz-menu-item>Logout</li>
+  </ul>
+</nz-dropdown-menu>
