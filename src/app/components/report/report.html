@@ -1,0 +1,76 @@
+<div class="reports-container">
+
+  <div class="reports-actions" style="margin-bottom:16px;">
+    <button nz-button nzType="primary" (click)="exportToExcel(inventoryReports, 'Inventory_Report')">Export Inventory Excel</button>
+    <button nz-button nzType="primary" (click)="exportToExcel(orderReports, 'Orders_Report')">Export Orders Excel</button>
+    <button nz-button nzType="primary" (click)="exportToExcel(salesReports, 'Sales_Report')">Export Sales Excel</button>
+  </div>
+  <!-- Inventory Summary -->
+  <h2>Inventory Summary</h2>
+  <nz-table #inventoryTable [nzBordered]="true">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>SKU</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of inventoryReports">
+        <td>{{ item.item }}</td>
+        <td>{{ item.sku }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.quantity }}</td>
+        <td><nz-tag [nzColor]="getInventoryStatusColor(item.status)">{{ item.status }}</nz-tag></td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <!-- Orders Summary -->
+  <h2 class="mt-4">Orders Summary</h2>
+  <nz-table #ordersTable [nzBordered]="true">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Customer</th>
+        <th>Date</th>
+        <th>Total Items</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderReports">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.customer }}</td>
+        <td>{{ order.date }}</td>
+        <td>{{ order.totalItems }}</td>
+        <td><nz-tag [nzColor]="getOrderStatusColor(order.status)">{{ order.status }}</nz-tag></td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <!-- Sales Summary -->
+  <h2 class="mt-4">Sales Summary</h2>
+  <nz-table #salesTable [nzBordered]="true">
+    <thead>
+      <tr>
+        <th>Invoice ID</th>
+        <th>Customer</th>
+        <th>Date</th>
+        <th>Total Amount</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of salesReports">
+        <td>{{ sale.invoiceId }}</td>
+        <td>{{ sale.customer }}</td>
+        <td>{{ sale.date }}</td>
+        <td>{{ sale.totalAmount }}</td>
+        <td><nz-tag [nzColor]="getSalesStatusColor(sale.status)">{{ sale.status }}</nz-tag></td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -6,53 +6,13 @@
 
     <nav>
       <ul nz-menu nzMode="inline">
-        <li nz-menu-item routerLink="/dashboard" routerLinkActive="selected">
-          <nz-icon nzType="dashboard" nzTheme="outline" />
-          Dashboard
-        </li>
-
-        <li nz-menu-item routerLink="/inventory" routerLinkActive="selected">
-          <span nz-icon nzType="database"></span>
-          Inventory
-        </li>
-
-        <li nz-menu-item routerLink="/warehouses" routerLinkActive="selected">
-          <span nz-icon nzType="home"></span>
-          Warehouses
-        </li>
-
-        <li nz-menu-item routerLink="/orders" routerLinkActive="selected">
-          <span nz-icon nzType="shopping"></span>
-          Orders
-        </li>
-
-        <li nz-menu-item routerLink="/suppliers" routerLinkActive="selected">
-          <span nz-icon nzType="team"></span>
-          Suppliers
-        </li>
-
-        <li nz-menu-item routerLink="/reports" routerLinkActive="selected">
-          <span nz-icon nzType="bar-chart"></span>
-          Reports
-        </li>
-
-        <li nz-menu-item routerLink="/maintenance" routerLinkActive="selected">
-          <span nz-icon nzType="tool"></span>
-          Maintenance
-        </li>
-
-        <li nz-menu-item routerLink="/users" routerLinkActive="selected">
-          <span nz-icon nzType="user"></span>
-          Users
-        </li>
-
-        <li nz-menu-item routerLink="/settings" routerLinkActive="selected">
-          <span nz-icon nzType="setting"></span>
-          Settings
+        <li nz-menu-item *ngFor="let item of menuItems" [routerLink]="item.link" routerLinkActive="selected">
+          <nz-icon [nzType]="item.icon" nzTheme="outline"></nz-icon>
+          {{ item.label }}
         </li>
       </ul>
-
     </nav>
+
   </nz-sider>
 
 
