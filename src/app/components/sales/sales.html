@@ -1,0 +1,33 @@
+<div class="sales-header">
+  <h2>Sales</h2>
+  <button nz-button nzType="primary" (click)="openAddModal()">Add Sale</button>
+</div>
+
+<nz-table [nzData]="sales" [nzBordered]="true" nzSize="middle">
+  <thead>
+    <tr>
+      <th>Invoice ID</th>
+      <th>Customer</th>
+      <th>Total Amount</th>
+      <th>Status</th>
+      <th width="220px">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sale of sales; let i = index">
+      <td>{{ sale.invoiceId }}</td>
+      <td>{{ sale.customer }}</td>
+      <td>{{ sale.totalAmount | currency }}</td>
+      <td>
+        <nz-tag [nzColor]="getStatusColor(sale.status)">
+          {{ sale.status }}
+        </nz-tag>
+      </td>
+      <td>
+        <button nz-button nzType="link" (click)="openEditModal(i)">Edit</button>
+        <button nz-button nzType="link" (click)="downloadInvoice(sale)">PDF</button>
+        <button nz-button nzType="link" nzDanger (click)="deleteSale(i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

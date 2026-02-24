@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -10,6 +10,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { InvoicePdfService } from '../../service/invoice-pdf-service';
+import { warn } from '@ant-design/icons-angular';
+import { InventoryService } from '../../service/inventory.service';
 
 
 @Component({
@@ -22,10 +25,10 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
   styleUrl: './inventory.less',
 })
 export class Inventory {
+  invoiceSvc = inject(InventoryService)
+
   inventoryList: any[] = [
-    { name: 'Laptop', sku: 'SKU001', category: 'Electronics', quantity: 25, status: 'Active' },
-    { name: 'Mouse', sku: 'SKU002', category: 'Accessories', quantity: 10, status: 'Low Stock' },
-    { name: 'Keyboard', sku: 'SKU003', category: 'Accessories', quantity: 0, status: 'Out of Stock' },
+
   ];
 
   isModalVisible = false;
@@ -42,6 +45,7 @@ export class Inventory {
       quantity: [0, [Validators.required, Validators.min(0)]],
       status: ['Active', Validators.required],
     });
+    this.getProducts()
   }
 
   openModal() {
@@ -70,6 +74,24 @@ export class Inventory {
 
   closeModal() {
     this.isModalVisible = false;
+  }
+
+
+  getProducts() {
+    this.invoiceSvc.getProducts().subscribe(res => {
+      this.inventoryList = res
+      console.warn(res);
+
+    })
+  }
+
+
+  deleteProduct(id: string) {
+    this.invoiceSvc.deleteProduct(id).subscribe(res => {
+      this.getProducts()
+      console.warn(res);
+
+    })
   }
 
   submitForm() {

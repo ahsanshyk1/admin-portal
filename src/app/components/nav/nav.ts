@@ -17,13 +17,13 @@ export class Nav {
   menuItems = [
     { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
     { label: 'Inventory', icon: 'database', link: '/inventory' },
-    { label: 'Warehouses', icon: 'home', link: '/warehouses' },
-    { label: 'Orders', icon: 'shopping', link: '/orders' },
+    // { label: 'Warehouses', icon: 'home', link: '/warehouses' },
+    { label: 'Orders', icon: 'shopping-cart', link: '/orders' },
     { label: 'Suppliers', icon: 'team', link: '/suppliers' },
     { label: 'Reports', icon: 'bar-chart', link: '/reports' },
-    { label: 'Maintenance', icon: 'tool', link: '/maintenance' },
-    { label: 'Users', icon: 'user', link: '/users' },
-    { label: 'Settings', icon: 'setting', link: '/settings' },
+    { label: 'Sales', icon: 'shopping', link: '/sales' },
+    // { label: 'Users', icon: 'user', link: '/users' },
+    // { label: 'Settings', icon: 'setting', link: '/settings' },
   ];
 
 }
