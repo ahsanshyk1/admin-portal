@@ -6,7 +6,7 @@
   </div>
 
   <!-- Inventory Table -->
-  <nz-table #inventoryTable [nzBordered]="true">
+  <nz-table #inventoryTable [nzData]="inventoryList" [nzFrontPagination]="true" [nzPageSizeOptions]="[5,10,15,20]" [nzPageSize]="5" [nzBordered]="true" [nzLoading]="!inventoryList.length">
     <thead>
       <tr>
         <th>Name</th>
@@ -31,7 +31,7 @@
             <span nz-icon nzType="edit"></span>
 
           </button>
-          <button nz-button nzType="default" nzSize="small" nzDanger (click)="deleteItem(item)">
+          <button nz-button nzType="default" nzSize="small" nzDanger (click)="deleteProduct(item._id)">
             <span nz-icon nzType="delete"></span>
 
           </button>

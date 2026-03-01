@@ -1,0 +1,71 @@
+<div class="inventory-container">
+
+
+  <div class="sales-header inventory-container">
+    <h2>Create Sales</h2>
+  </div>
+
+  <form nz-form [formGroup]="salesForm" class="inventory-container">
+
+    <!-- Top Row -->
+    <div class="form-row">
+      <div class="form-field">
+        <label>Invoice ID</label>
+        <input nz-input formControlName="invoiceId" />
+      </div>
+
+      <div class="form-field">
+        <label>Customer</label>
+        <input nz-input formControlName="customer" />
+      </div>
+
+      <div class="form-field">
+        <label>Status</label>
+        <nz-select formControlName="status">
+          <nz-option nzValue="Paid" nzLabel="Paid"></nz-option>
+          <nz-option nzValue="Unpaid" nzLabel="Unpaid"></nz-option>
+        </nz-select>
+      </div>
+    </div>
+
+    <!-- Items Section -->
+    <div formArrayName="items" class="items-section">
+
+      <!-- Header -->
+      <div class="items-header">
+        <div>Product</div>
+        <div>Qty</div>
+        <div>Unit Price</div>
+        <div>Subtotal</div>
+        <div></div>
+      </div>
+
+      <!-- Rows -->
+      <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="item-row">
+        <input nz-input formControlName="name" placeholder="Product" />
+
+        <input nz-input type="number" formControlName="quantity" (input)="updateSubtotal(i)" placeholder="Qty" />
+
+        <input nz-input type="number" formControlName="unitPrice" (input)="updateSubtotal(i)" placeholder="Unit Price" />
+
+        <input nz-input [value]="item.get('subtotal')?.value" disabled placeholder="Subtotal" />
+
+        <button nz-button nzType="link" nzDanger (click)="removeItem(i)">
+          Remove
+        </button>
+      </div>
+
+      <!-- Add Button -->
+      <button nz-button nzType="dashed" (click)="addItem()">
+        + Add Product
+      </button>
+    </div>
+
+    <!-- Total Section -->
+    <div class="total-row">
+      <label>Total Amount</label>
+      <input nz-input formControlName="totalAmount" />
+    </div>
+
+  </form>
+</div>
