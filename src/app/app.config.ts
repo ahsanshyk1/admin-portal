@@ -8,6 +8,7 @@ import { BarChartOutline, DashboardOutline, DatabaseOutline, HomeOutline, Settin
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { en_US, provideNzI18n } from 'ng-zorro-antd/i18n';
+import { EnvService } from './services/env.service';
 
 const antDesignIcons = Object.keys(AllIcons).map(
   key => (AllIcons as any)[key]
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideNzIcons(antDesignIcons),  // ⭐ REQUIRED FIX
     provideNoopAnimations(),
     provideNzI18n(en_US),
+    EnvService
 
 
 

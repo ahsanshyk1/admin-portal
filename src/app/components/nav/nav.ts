@@ -24,6 +24,7 @@ export class Nav {
     { label: 'Maintenance', icon: 'tool', link: '/maintenance' },
     { label: 'Users', icon: 'user', link: '/users' },
     { label: 'Settings', icon: 'setting', link: '/settings' },
+    { label: 'Login', icon: 'login', link: '/login' }
   ];
 
 }
