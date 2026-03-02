@@ -13,21 +13,24 @@ import { CommonModule } from '@angular/common';
   styleUrl: './nav.less',
 })
 export class Nav {
+  private tokenKey = 'authToken';
+  // isAuthenticated = localStorage.getItem(this.tokenKey)
   // sidebar.component.ts
   menuItems = [
     { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
     { label: 'Inventory', icon: 'database', link: '/inventory' },
+    { label: 'Sales', icon: 'shopping', link: '/sales' },
     // { label: 'Warehouses', icon: 'home', link: '/warehouses' },
     { label: 'Orders', icon: 'shopping-cart', link: '/orders' },
     { label: 'Suppliers', icon: 'team', link: '/suppliers' },
     { label: 'Reports', icon: 'bar-chart', link: '/reports' },
-    { label: 'Maintenance', icon: 'tool', link: '/maintenance' },
     { label: 'Users', icon: 'user', link: '/users' },
-    { label: 'Settings', icon: 'setting', link: '/settings' },
-    { label: 'Login', icon: 'login', link: '/login' }
-    { label: 'Sales', icon: 'shopping', link: '/sales' },
     // { label: 'Users', icon: 'user', link: '/users' },
-    // { label: 'Settings', icon: 'setting', link: '/settings' },
   ];
+
+
+  isAuthenticated() {
+    return localStorage.getItem(this.tokenKey)
+  }
 
 }

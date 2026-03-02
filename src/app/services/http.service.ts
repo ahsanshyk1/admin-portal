@@ -1,14 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { EnvService } from './env.service';
+import { config } from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
   private http = inject(HttpClient);
-    private env = inject(EnvService);
-  private api = this.env.apiUrl + 'api';
+  private api = config.apiEndpoint;
 
   constructor() { }
 

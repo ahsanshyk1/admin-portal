@@ -1,4 +1,6 @@
 <nz-layout class="app-layout">
+  @if(isAuthenticated()){
+
   <nz-sider nzTheme="light" [nzWidth]="256">
     <div class="logo">
       <img src="assets/svg/logo.svg" alt="Logo" />
@@ -17,9 +19,12 @@
 
 
 
+  }
   <!-- Content -->
   <nz-content class="inner-content">
+    @if(isAuthenticated()){
     <app-header></app-header>
+    }
     <ng-content></ng-content>
   </nz-content>
 </nz-layout>

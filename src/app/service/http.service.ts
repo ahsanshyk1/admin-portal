@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
 	private http = inject(HttpClient);
-	private api = 'http://localhost:5000/api/';
+	private api = 'http://admin-portal-backend-production-a812.up.railway.app/api/';
 	constructor() { }
 
 	get(route: string, params: { [key: string]: string | boolean | number; } = {}, headers: { [key: string]: string | string[]; } = {}) {

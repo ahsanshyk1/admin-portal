@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NzAvatarComponent } from 'ng-zorro-antd/avatar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDropdownMenuComponent, NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzHeaderComponent } from "ng-zorro-antd/layout";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,4 +15,8 @@ import { NzHeaderComponent } from "ng-zorro-antd/layout";
 })
 export class Header {
 
+  private authSvc = inject(AuthService)
+  onLogout() {
+    this.authSvc.logout()
+  }
 }

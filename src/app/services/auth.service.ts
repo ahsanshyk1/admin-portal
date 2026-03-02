@@ -7,13 +7,13 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private tokenKey = 'auth_token';
+  private tokenKey = 'authToken';
 
-  constructor(private router: Router, private http: HttpService) {}
+  constructor(private router: Router, private http: HttpService) { }
 
   async login(email: any, password: any): Promise<boolean> {
     try {
-      const res: any = await firstValueFrom(this.http.post('/auth/login', { email, password }));
+      const res: any = await firstValueFrom(this.http.post('auth/login', { username: email, password }));
       // Accept common token fields
       const token = res?.token || res?.accessToken || res?.authToken || res?.data?.token;
       if (token) {

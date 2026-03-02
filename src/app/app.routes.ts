@@ -5,6 +5,8 @@ import { Report } from './components/report/report';
 import { Login } from './components/login/login';
 import { SalesComponent } from './components/sales/sales';
 import { AddSale } from './components/sales/add-sale/add-sale';
+import { loginGuard } from '../guards/login.guard';
+import { userGuard } from '../guards/user.guard';
 
 export const routes: Routes = [
   {
@@ -14,23 +16,31 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: Login
+    component: Login,
+    canActivate: [loginGuard]
   },
   {
     path: 'dashboard',
-    component: Dashboard
+    component: Dashboard,
+    canActivate: [userGuard],
   },
   {
     path: 'inventory',
-    component: Inventory
+    component: Inventory,
+    canActivate: [userGuard],
+
   },
   {
     path: 'reports',
-    component: Report
+    component: Report,
+    canActivate: [userGuard],
+
   },
   {
     path: 'sales',
-    component: SalesComponent
+    component: SalesComponent,
+    canActivate: [userGuard],
+
   },
   {
     path: 'add-sales',
