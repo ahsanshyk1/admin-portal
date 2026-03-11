@@ -1,47 +1,137 @@
-.dashboard-container {
-  padding: 16px;
+@import "../../../less/variables.less";
 
-  .summary-cards {
-    margin-bottom: 24px;
+.dashboard-wrapper {
+  padding: 8px 0;
 
-    .summary-card {
-      background: #001529;
-      color: #fff;
-      text-align: center;
-      border-radius: 6px;
-      height: 100px;
+  .page-header {
+    margin-bottom: 32px;
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
 
-      .card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-
-        .card-title {
-          font-size: 14px;
-          opacity: 0.8;
-        }
-
-        .card-value {
-          font-size: 24px;
-          font-weight: 600;
-          margin-top: 4px;
-        }
-      }
+    p {
+      color: #64748b;
+      font-size: 15px;
     }
   }
 
-  .recent-activity {
-    nz-card {
-      width: 100%;
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
 
-      nz-table {
+    .summary-card {
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border: none;
+      position: relative;
+      overflow: hidden;
 
-        th,
-        td {
-          text-align: center;
+      &::after {
+        content: '';
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        background: currentColor;
+        opacity: 0.03;
+        border-radius: 50%;
+      }
+
+      .card-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+      }
+
+      .card-info {
+        flex: 1;
+
+        .label {
+          display: block;
+          font-size: 13px;
+          color: #64748b;
+          font-weight: 500;
+          margin-bottom: 4px;
         }
+
+        .value {
+          font-size: 24px;
+          font-weight: 700;
+          color: #1e293b;
+          margin: 0;
+          line-height: 1;
+        }
+
+        .trend {
+          font-size: 12px;
+          font-weight: 600;
+          margin-top: 6px;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          
+          &.up { color: #10b981; }
+          &.down { color: #ef4444; }
+          &:not(.up):not(.down) { color: #94a3b8; }
+        }
+      }
+
+      // Card Variants
+      &.primary .card-icon { background: #f0fdf4; color: #10b981; }
+      &.warning .card-icon { background: #fffbeb; color: #f59e0b; }
+      &.info .card-icon { background: #eff6ff; color: #3b82f6; }
+      &.success .card-icon { background: #f0fdf4; color: #10b981; }
+    }
+  }
+
+  .table-section {
+    padding: 0;
+    overflow: hidden;
+
+    .section-header {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f1f5f9;
+
+      h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+        color: #1e293b;
+      }
+    }
+
+    .item-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .item-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: #64748b;
       }
     }
   }

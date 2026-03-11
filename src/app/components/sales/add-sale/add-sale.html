@@ -1,71 +1,86 @@
-<div class="inventory-container">
-
-
-  <div class="sales-header inventory-container">
-    <h2>Create Sales</h2>
+<div class="add-sale-wrapper">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Create New Sale</h1>
+      <p>Fill in the details below to generate a new transaction and invoice.</p>
+    </div>
   </div>
 
-  <form nz-form [formGroup]="salesForm" class="inventory-container">
-
-    <!-- Top Row -->
-    <div class="form-row">
-      <div class="form-field">
-        <label>Invoice ID</label>
-        <input nz-input formControlName="invoiceId" />
+  <form nz-form [formGroup]="salesForm" class="add-sale-form">
+    <div class="premium-card form-section">
+      <div class="section-header">
+        <h2>General Information</h2>
       </div>
+      <div class="form-grid">
+        <div class="form-item">
+          <label>Invoice ID</label>
+          <input nz-input formControlName="invoiceId" placeholder="e.g. INV-2026-001" />
+        </div>
 
-      <div class="form-field">
-        <label>Customer</label>
-        <input nz-input formControlName="customer" />
-      </div>
+        <div class="form-item">
+          <label>Customer Name</label>
+          <input nz-input formControlName="customer" placeholder="e.g. John Doe / ABC Corp" />
+        </div>
 
-      <div class="form-field">
-        <label>Status</label>
-        <nz-select formControlName="status">
-          <nz-option nzValue="Paid" nzLabel="Paid"></nz-option>
-          <nz-option nzValue="Unpaid" nzLabel="Unpaid"></nz-option>
-        </nz-select>
+        <div class="form-item">
+          <label>Payment Status</label>
+          <nz-select formControlName="status">
+            <nz-option nzValue="Paid" nzLabel="Paid"></nz-option>
+            <nz-option nzValue="Unpaid" nzLabel="Unpaid"></nz-option>
+          </nz-select>
+        </div>
       </div>
     </div>
 
-    <!-- Items Section -->
-    <div formArrayName="items" class="items-section">
-
-      <!-- Header -->
-      <div class="items-header">
-        <div>Product</div>
-        <div>Qty</div>
-        <div>Unit Price</div>
-        <div>Subtotal</div>
-        <div></div>
-      </div>
-
-      <!-- Rows -->
-      <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="item-row">
-        <input nz-input formControlName="name" placeholder="Product" />
-
-        <input nz-input type="number" formControlName="quantity" (input)="updateSubtotal(i)" placeholder="Qty" />
-
-        <input nz-input type="number" formControlName="unitPrice" (input)="updateSubtotal(i)" placeholder="Unit Price" />
-
-        <input nz-input [value]="item.get('subtotal')?.value" disabled placeholder="Subtotal" />
-
-        <button nz-button nzType="link" nzDanger (click)="removeItem(i)">
-          Remove
+    <div class="premium-card form-section items-card">
+      <div class="section-header">
+        <h2>Order Items</h2>
+        <button nz-button nzType="default" nzSize="small" (click)="addItem()">
+          <span nz-icon nzType="plus"></span> Add Item
         </button>
       </div>
+      
+      <div formArrayName="items" class="items-list">
+        <div class="items-header">
+          <div class="col-product">Product</div>
+          <div class="col-qty">Qty</div>
+          <div class="col-price">Unit Price</div>
+          <div class="col-subtotal">Subtotal</div>
+          <div class="col-action"></div>
+        </div>
 
-      <!-- Add Button -->
-      <button nz-button nzType="dashed" (click)="addItem()">
-        + Add Product
-      </button>
+        <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i" class="item-row">
+          <div class="col-product">
+            <input nz-input formControlName="name" placeholder="Item name" />
+          </div>
+          <div class="col-qty">
+            <input nz-input type="number" formControlName="quantity" (input)="updateSubtotal(i)" />
+          </div>
+          <div class="col-price">
+            <input nz-input type="number" formControlName="unitPrice" (input)="updateSubtotal(i)" />
+          </div>
+          <div class="col-subtotal">
+            <input nz-input [value]="item.get('subtotal')?.value | currency" disabled />
+          </div>
+          <div class="col-action">
+            <button nz-button nzType="text" nzDanger (click)="removeItem(i)" nz-tooltip nzTooltipTitle="Remove Item">
+              <span nz-icon nzType="delete"></span>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Total Section -->
-    <div class="total-row">
-      <label>Total Amount</label>
-      <input nz-input formControlName="totalAmount" />
+    <div class="form-footer">
+      <div class="total-display">
+        <span class="label">Total Amount:</span>
+        <span class="amount">{{ salesForm.get('totalAmount')?.value | currency }}</span>
+      </div>
+      <div class="actions">
+        <button nz-button nzType="primary" (click)="handleOk()" [disabled]="salesForm.invalid">
+          <span nz-icon nzType="save"></span> Save & Generate Invoice
+        </button>
+      </div>
     </div>
-
   </form>
-</div>
+</div>

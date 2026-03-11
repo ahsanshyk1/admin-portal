@@ -8,7 +8,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import jsPDF from 'jspdf';
+
 import { InvoicePdfService } from '../../../service/invoice-pdf-service';
 
 @Component({
@@ -22,7 +25,9 @@ import { InvoicePdfService } from '../../../service/invoice-pdf-service';
     NzFormModule,
     NzInputModule,
     NzSelectModule,
-    NzTagModule
+    NzTagModule,
+    NzIconModule,
+    NzToolTipModule
   ],
   templateUrl: './add-sale.html',
   styleUrl: './add-sale.less',

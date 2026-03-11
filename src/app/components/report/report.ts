@@ -5,11 +5,13 @@ import { CommonModule } from '@angular/common';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [NzTagModule, NzTableModule, CommonModule, NzButtonModule],
+  imports: [NzTagModule, NzTableModule, CommonModule, NzButtonModule, NzIconModule, NzToolTipModule],
   templateUrl: './report.html',
   styleUrls: ['./report.less'],
 })

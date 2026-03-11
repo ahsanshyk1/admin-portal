@@ -1,82 +1,99 @@
-<div class="dashboard-container">
-  <!-- Summary Cards -->
-  <div class="summary-cards">
-    <nz-row [nzGutter]="16">
-      <nz-col nzSpan="6">
-        <nz-card class="summary-card">
-          <div class="card-content">
-            <span class="card-title">Total Items</span>
-            <span class="card-value">1,245</span>
-          </div>
-        </nz-card>
-      </nz-col>
-
-      <nz-col nzSpan="6">
-        <nz-card class="summary-card">
-          <div class="card-content">
-            <span class="card-title">Low Stock</span>
-            <span class="card-value">78</span>
-          </div>
-        </nz-card>
-      </nz-col>
-
-      <nz-col nzSpan="6">
-        <nz-card class="summary-card">
-          <div class="card-content">
-            <span class="card-title">Warehouses</span>
-            <span class="card-value">5</span>
-          </div>
-        </nz-card>
-      </nz-col>
-
-      <nz-col nzSpan="6">
-        <nz-card class="summary-card">
-          <div class="card-content">
-            <span class="card-title">Orders</span>
-            <span class="card-value">342</span>
-          </div>
-        </nz-card>
-      </nz-col>
-    </nz-row>
+<div class="dashboard-wrapper">
+  <div class="page-header">
+    <h1>Dashboard Overview</h1>
+    <p>Welcome back! Here's what's happening today.</p>
   </div>
 
-  <!-- Recent Activity Table -->
-  <div class="recent-activity">
-    <nz-card nzTitle="Recent Stock Movements">
-      <nz-table #recentTable [nzBordered]="true" [nzBordered]="true">
+  <div class="summary-grid">
+    <div class="premium-card summary-card primary">
+      <div class="card-icon">
+        <span nz-icon nzType="database" nzTheme="outline"></span>
+      </div>
+      <div class="card-info">
+        <span class="label">Total Items</span>
+        <h3 class="value">1,245</h3>
+        <span class="trend up"><span nz-icon nzType="arrow-up"></span> 12%</span>
+      </div>
+    </div>
+
+    <div class="premium-card summary-card warning">
+      <div class="card-icon">
+        <span nz-icon nzType="alert" nzTheme="outline"></span>
+      </div>
+      <div class="card-info">
+        <span class="label">Low Stock</span>
+        <h3 class="value">78</h3>
+        <span class="trend down"><span nz-icon nzType="arrow-down"></span> 5%</span>
+      </div>
+    </div>
+
+    <div class="premium-card summary-card info">
+      <div class="card-icon">
+        <span nz-icon nzType="bank" nzTheme="outline"></span>
+      </div>
+      <div class="card-info">
+        <span class="label">Warehouses</span>
+        <h3 class="value">5</h3>
+        <span class="trend">Stable</span>
+      </div>
+    </div>
+
+    <div class="premium-card summary-card success">
+      <div class="card-icon">
+        <span nz-icon nzType="shopping-cart" nzTheme="outline"></span>
+      </div>
+      <div class="card-info">
+        <span class="label">Total Orders</span>
+        <h3 class="value">342</h3>
+        <span class="trend up"><span nz-icon nzType="arrow-up"></span> 8.4%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+    <div class="premium-card table-section">
+      <div class="section-header">
+        <h2>Recent Stock Movements</h2>
+        <button nz-button nzType="default" nzSize="small">View All</button>
+      </div>
+      
+      <nz-table #recentTable [nzData]="['']" [nzShowPagination]="false" nzSize="middle">
         <thead>
           <tr>
-            <th>Item</th>
+            <th>Item Name</th>
             <th>Quantity</th>
-            <th>Type</th>
+            <th>Movement Type</th>
             <th>Date</th>
             <th>Warehouse</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Laptop</td>
-            <td>10</td>
-            <td>In</td>
-            <td>2026-02-13</td>
-            <td>Warehouse A</td>
+            <td>
+              <div class="item-cell">
+                <div class="item-avatar">L</div>
+                <span>Laptop Pro X1</span>
+              </div>
+            </td>
+            <td><strong>10</strong></td>
+            <td><nz-tag nzColor="success">INBOUND</nz-tag></td>
+            <td>2026-03-12</td>
+            <td>Main Warehouse</td>
           </tr>
           <tr>
-            <td>Mouse</td>
-            <td>5</td>
-            <td>Out</td>
-            <td>2026-02-12</td>
-            <td>Warehouse B</td>
-          </tr>
-          <tr>
-            <td>Keyboard</td>
-            <td>3</td>
-            <td>In</td>
-            <td>2026-02-11</td>
-            <td>Warehouse C</td>
+            <td>
+              <div class="item-cell">
+                <div class="item-avatar">M</div>
+                <span>Wireless Mouse</span>
+              </div>
+            </td>
+            <td><strong>5</strong></td>
+            <td><nz-tag nzColor="error">OUTBOUND</nz-tag></td>
+            <td>2026-03-11</td>
+            <td>North Side</td>
           </tr>
         </tbody>
       </nz-table>
-    </nz-card>
+    </div>
   </div>
-</div>
+</div>

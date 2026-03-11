@@ -1,35 +1,155 @@
-.inventory-container {
-  padding: 16px;
+@import "../../../less/variables.less";
 
-  .inventory-header {
+.inventory-wrapper {
+  padding: 8px 0;
+
+  .page-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 16px;
+    align-items: flex-end;
+    margin-bottom: 32px;
 
-    .search-input {
-      width: 250px;
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+
+    p {
+      color: #64748b;
+      font-size: 15px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+
+      .search-wrapper {
+        position: relative;
+        
+        span[nz-icon] {
+          position: absolute;
+          left: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #94a3b8;
+          z-index: 1;
+        }
+
+        .search-input {
+          width: 320px;
+          padding-left: 36px;
+        }
+      }
+
+      .add-btn {
+        height: 40px;
+        padding: 0 20px;
+        font-weight: 600;
+      }
     }
   }
 
-  nz-table {
+  .table-section {
+    padding: 0;
+    overflow: hidden;
 
-    th,
-    td {
-      text-align: center;
+    .name-cell {
+      color: #1e293b;
     }
 
-    nz-tag {
-      font-weight: 500;
+    .sku-tag {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #475569;
     }
 
-    button {
-      margin: 0 2px;
+    .qty-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 32px;
+      height: 24px;
+      padding: 0 8px;
+      background: #f0fdf4;
+      color: #16a34a;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 13px;
+
+      &.low {
+        background: #fef2f2;
+        color: #dc2626;
+      }
+    }
+
+    .status-tag {
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+    }
+
+    .actions-cell {
+      display: flex;
+      gap: 4px;
+
+      button {
+        font-size: 18px;
+        color: #94a3b8;
+        
+        &:hover {
+          color: @primary-color;
+          background: #f0fdf4;
+
+          &.ant-btn-dangerous {
+            color: #ef4444;
+            background: #fef2f2;
+          }
+        }
+      }
     }
   }
 
-  nz-modal {
-    nz-form-item {
-      margin-bottom: 12px;
+  .premium-form {
+    padding: 16px 8px;
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+
+      .form-item {
+        label {
+          display: block;
+          font-size: 13px;
+          font-weight: 600;
+          color: #475569;
+          margin-bottom: 8px;
+        }
+
+        &.full-width {
+          grid-column: span 2;
+        }
+      }
     }
+  }
+}
+
+.modal-title-custom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1e293b;
+
+  span[nz-icon] {
+    color: @primary-color;
+    font-size: 24px;
   }
 }

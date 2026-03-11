@@ -1,10 +1,74 @@
-.sales-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-}
+@import "../../../less/variables.less";
 
-.inventory-container {
-  padding: 16px;
+.sales-wrapper {
+  padding: 8px 0;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+
+    p {
+      color: #64748b;
+      font-size: 15px;
+    }
+  }
+
+  .table-section {
+    padding: 0;
+    overflow: hidden;
+
+    .invoice-tag {
+      background: #eff6ff;
+      color: #3b82f6;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .customer-cell {
+      color: #1e293b;
+    }
+
+    .price {
+      color: #059669;
+      font-size: 15px;
+    }
+
+    .status-badge {
+      border-radius: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .actions-cell {
+      display: flex;
+      gap: 4px;
+
+      button {
+        font-size: 18px;
+        color: #94a3b8;
+        
+        &:hover {
+          color: @primary-color;
+          background: #f0fdf4;
+
+          &.ant-btn-dangerous {
+            color: #ef4444;
+            background: #fef2f2;
+          }
+        }
+      }
+    }
+  }
 }

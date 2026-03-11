@@ -1,33 +1,54 @@
-<div class="sales-header">
-  <h2>Sales</h2>
-  <button nz-button nzType="primary" (click)="openAddModal()">Add Sale</button>
-</div>
+<div class="sales-wrapper">
+  <div class="page-header">
+    <div class="header-content">
+      <h1>Sales Registry</h1>
+      <p>View and manage all customer transactions and invoices.</p>
+    </div>
+    <div class="header-actions">
+      <button nz-button nzType="primary" (click)="openAddModal()" class="add-btn">
+        <span nz-icon nzType="plus"></span> Add Sale
+      </button>
+    </div>
+  </div>
 
-<nz-table [nzData]="sales" [nzBordered]="true" nzSize="middle">
-  <thead>
-    <tr>
-      <th>Invoice ID</th>
-      <th>Customer</th>
-      <th>Total Amount</th>
-      <th>Status</th>
-      <th width="220px">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let sale of sales; let i = index">
-      <td>{{ sale.invoiceId }}</td>
-      <td>{{ sale.customer }}</td>
-      <td>{{ sale.totalAmount | currency }}</td>
-      <td>
-        <nz-tag [nzColor]="getStatusColor(sale.status)">
-          {{ sale.status }}
-        </nz-tag>
-      </td>
-      <td>
-        <button nz-button nzType="link" (click)="openEditModal(i)">Edit</button>
-        <button nz-button nzType="link" (click)="downloadInvoice(sale)">PDF</button>
-        <button nz-button nzType="link" nzDanger (click)="deleteSale(i)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</nz-table>
+  <div class="premium-card table-section">
+    <nz-table [nzData]="sales" nzSize="middle">
+      <thead>
+        <tr>
+          <th>Invoice ID</th>
+          <th>Customer Information</th>
+          <th>Total Amount</th>
+          <th>Payment Status</th>
+          <th width="200px">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sale of sales; let i = index">
+          <td><code class="invoice-tag">{{ sale.invoiceId }}</code></td>
+          <td class="customer-cell">
+            <div class="customer-info">
+              <strong>{{ sale.customer }}</strong>
+            </div>
+          </td>
+          <td><strong class="price">{{ sale.totalAmount | currency }}</strong></td>
+          <td>
+            <nz-tag [nzColor]="getStatusColor(sale.status)" class="status-badge">
+              {{ sale.status }}
+            </nz-tag>
+          </td>
+          <td class="actions-cell">
+            <button nz-button nzType="text" (click)="openEditModal(i)" nz-tooltip nzTooltipTitle="Edit Sale">
+              <span nz-icon nzType="edit"></span>
+            </button>
+            <button nz-button nzType="text" (click)="downloadInvoice(sale)" nz-tooltip nzTooltipTitle="Download PDF">
+              <span nz-icon nzType="file-pdf"></span>
+            </button>
+            <button nz-button nzType="text" nzDanger (click)="deleteSale(i)" nz-tooltip nzTooltipTitle="Delete">
+              <span nz-icon nzType="delete"></span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

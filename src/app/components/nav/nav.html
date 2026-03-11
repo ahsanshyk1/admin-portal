@@ -1,30 +1,64 @@
 <nz-layout class="app-layout">
   @if(isAuthenticated()){
 
-  <nz-sider nzTheme="light" [nzWidth]="256">
-    <div class="logo">
-      <img src="assets/svg/logo.svg" alt="Logo" />
+  <nz-sider nzTheme="light" [nzWidth]="260" class="sidebar">
+    <div class="sidebar-wrapper">
+      <div class="logo">
+        <img src="assets/svg/logo.svg" alt="Logo" />
+      </div>
+
+      <nav class="sidebar-menu">
+        <ul nz-menu nzMode="inline">
+          <li nz-menu-item *ngFor="let item of menuItems" [routerLink]="item.link" routerLinkActive="selected">
+            <nz-icon [nzType]="item.icon" nzTheme="outline"></nz-icon>
+            {{ item.label }}
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer-container">
+        <div class="sidebar-footer" nz-dropdown [nzDropdownMenu]="profileMenu" nzPlacement="topRight" nzTrigger="click">
+          <div class="user-profile">
+            <nz-avatar nzText="A" class="profile-avatar"></nz-avatar>
+            <div class="user-info">
+              <span class="user-name">Ahsan</span>
+              <span class="user-role">ahsan@example.com</span>
+            </div>
+            <div class="profile-action">
+              <span nz-icon nzType="more" nzTheme="outline"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <nav>
-      <ul nz-menu nzMode="inline">
-        <li nz-menu-item *ngFor="let item of menuItems" [routerLink]="item.link" routerLinkActive="selected">
-          <nz-icon [nzType]="item.icon" nzTheme="outline"></nz-icon>
-          {{ item.label }}
-        </li>
-      </ul>
-    </nav>
-
   </nz-sider>
+
+  <nz-dropdown-menu #profileMenu="nzDropdownMenu">
+    <ul nz-menu class="profile-dropdown-menu">
+      <li nz-menu-item class="menu-header">
+        <strong>Account Settings</strong>
+      </li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item>
+        <span nz-icon nzType="lock" nzTheme="outline"></span>
+        Change Password
+      </li>
+      <li nz-menu-item (click)="onLogout()" nzDanger>
+        <span nz-icon nzType="logout" nzTheme="outline"></span>
+        Sign Out
+      </li>
+    </ul>
+  </nz-dropdown-menu>
 
 
 
   }
   <!-- Content -->
-  <nz-content class="inner-content">
+  <nz-content class="inner-content" [class.auth-bg]="isAuthenticated()">
     @if(isAuthenticated()){
-    <app-header></app-header>
     }
-    <ng-content></ng-content>
+    <div [class.main-content-area]="isAuthenticated()">
+      <ng-content></ng-content>
+    </div>
   </nz-content>
 </nz-layout>
