@@ -37,7 +37,7 @@ export class Report {
   // ------------------- Status Colors -------------------
   getInventoryStatusColor(status: string): string {
     switch (status) {
-      case 'Active': return 'green';
+      case 'Active': return 'orange';
       case 'Low Stock': return 'orange';
       case 'Out of Stock': return 'red';
       default: return 'default';
@@ -48,14 +48,14 @@ export class Report {
     switch (status) {
       case 'Pending': return 'orange';
       case 'Shipped': return 'blue';
-      case 'Delivered': return 'green';
+      case 'Delivered': return 'orange';
       case 'Cancelled': return 'red';
       default: return 'default';
     }
   }
 
   getSalesStatusColor(status: string): string {
-    return status === 'Paid' ? 'green' : 'red';
+    return status === 'Paid' ? 'orange' : 'red';
   }
 
   // ------------------- Excel Export -------------------

@@ -191,7 +191,7 @@ export class SalesComponent {
   }
 
   getStatusColor(status: string): string {
-    return status === 'Paid' ? 'green' : 'red';
+    return status === 'Paid' ? 'orange' : 'red';
   }
 
   downloadInvoice(sale: any) {

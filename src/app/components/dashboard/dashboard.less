@@ -5,7 +5,7 @@
 
   .page-header {
     margin-bottom: 32px;
-    
+
     h1 {
       font-size: 28px;
       font-weight: 700;
@@ -34,17 +34,17 @@
       position: relative;
       overflow: hidden;
 
-      &::after {
-        content: '';
-        position: absolute;
-        top: -20px;
-        right: -20px;
-        width: 100px;
-        height: 100px;
-        background: currentColor;
-        opacity: 0.03;
-        border-radius: 50%;
-      }
+      // &::after {
+      //   content: '';
+      //   position: absolute;
+      //   top: -20px;
+      //   right: -20px;
+      //   width: 100px;
+      //   height: 100px;
+      //   background: currentColor;
+      //   opacity: 0.03;
+      //   border-radius: 50%;
+      // }
 
       .card-icon {
         width: 56px;
@@ -82,24 +82,47 @@
           display: inline-flex;
           align-items: center;
           gap: 4px;
-          
-          &.up { color: #10b981; }
-          &.down { color: #ef4444; }
-          &:not(.up):not(.down) { color: #94a3b8; }
+
+          &.up {
+            color: #f79e44;
+          }
+
+          &.down {
+            color: #ef4444;
+          }
+
+          &:not(.up):not(.down) {
+            color: #94a3b8;
+          }
         }
       }
 
       // Card Variants
-      &.primary .card-icon { background: #f0fdf4; color: #10b981; }
-      &.warning .card-icon { background: #fffbeb; color: #f59e0b; }
-      &.info .card-icon { background: #eff6ff; color: #3b82f6; }
-      &.success .card-icon { background: #f0fdf4; color: #10b981; }
+      &.primary .card-icon {
+        background: #fff5ea;
+        color: #f79e44;
+      }
+
+      &.warning .card-icon {
+        background: #fffbeb;
+        color: #f59e0b;
+      }
+
+      &.info .card-icon {
+        background: #eff6ff;
+        color: #3b82f6;
+      }
+
+      &.success .card-icon {
+        background: #fff5ea;
+        color: #f79e44;
+      }
     }
   }
 
   .table-section {
     padding: 0;
-    overflow: hidden;
+    overflow-x: auto;
 
     .section-header {
       padding: 24px 32px;

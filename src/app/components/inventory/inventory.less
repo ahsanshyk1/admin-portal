@@ -4,10 +4,16 @@
   padding: 8px 0;
 
   .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 16px;
     margin-bottom: 32px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
 
     h1 {
       font-size: 28px;
@@ -22,9 +28,14 @@
     }
 
     .header-actions {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto;
       gap: 16px;
       align-items: center;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
 
       .search-wrapper {
         position: relative;
@@ -41,6 +52,9 @@
         .search-input {
           width: 320px;
           padding-left: 36px;
+          @media (max-width: 768px) {
+            width: 100%;
+          }
         }
       }
 
@@ -54,7 +68,7 @@
 
   .table-section {
     padding: 0;
-    overflow: hidden;
+    overflow-x: auto;
 
     .name-cell {
       color: #1e293b;
@@ -76,8 +90,8 @@
       min-width: 32px;
       height: 24px;
       padding: 0 8px;
-      background: #f0fdf4;
-      color: #16a34a;
+      background: #fff5ea;
+      color: #d97d26;
       border-radius: 12px;
       font-weight: 600;
       font-size: 13px;
@@ -104,7 +118,7 @@
         
         &:hover {
           color: @primary-color;
-          background: #f0fdf4;
+          background: #fff5ea;
 
           &.ant-btn-dangerous {
             color: #ef4444;

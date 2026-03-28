@@ -7,12 +7,12 @@ export class InvoicePdfService {
   private httpSvc = inject(HttpService)
   generateInvoice(invoice: any) {
     const doc = new jsPDF();
-    const primaryColor = '#10b981';
+    const primaryColor = '#f79e44';
     const secondaryColor = '#64748b';
     const darkColor = '#1e293b';
 
     // Header Color Bar
-    doc.setFillColor(16, 185, 129); // #10b981
+    doc.setFillColor(247, 158, 68); // #f79e44
     doc.rect(0, 0, 210, 40, 'F');
 
     // Title

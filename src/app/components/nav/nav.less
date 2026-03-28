@@ -3,20 +3,56 @@
 .app-layout {
   min-height: 100vh;
   background: #f4f6f8;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-rows: 100vh;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Sidebar */
-nz-sider {
+.sidebar {
   background: @sidebar-bg;
   border-right: 1px solid #f1f5f9;
   height: 100vh;
   position: sticky;
   top: 0;
+  grid-column: 1 / 2;
+  z-index: 1000;
+  transition: transform 0.3s ease;
 
   .sidebar-wrapper {
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+  }
+
+  @media (max-width: 992px) {
+    position: fixed;
+    transform: translateX(-100%);
+    width: 260px;
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.sidebar-backdrop {
+  display: none;
+  
+  @media (max-width: 992px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
   }
 }
 
@@ -115,9 +151,53 @@ nav button[nz-button] {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  grid-column: 2 / 3;
+  overflow-y: auto;
+
+  @media (max-width: 992px) {
+    grid-column: 1 / 2;
+  }
 
   &.auth-bg {
     background: #f1f5f9;
+  }
+}
+
+.mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  @media (max-width: 992px) {
+    display: flex;
+  }
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    img {
+      height: 28px;
+    }
+
+    span {
+      font-weight: 700;
+      font-size: 16px;
+      color: #1e293b;
+    }
+  }
+
+  .menu-toggle {
+    font-size: 20px;
+    color: #1e293b;
+    padding: 0;
   }
 }
 
@@ -145,7 +225,7 @@ nav button[nz-button] {
     width: 100%;
 
     .profile-avatar {
-      background-color: #10b981 !important;
+      background-color: #f79e44 !important;
       color: #ffffff !important;
       width: 40px;
       height: 40px;

@@ -79,7 +79,7 @@ export class Inventory {
 
   getProducts() {
     this.invoiceSvc.getProducts().subscribe(res => {
-      this.inventoryList = res
+      this.inventoryList = res.data
       console.warn(res);
 
     })
@@ -112,7 +112,7 @@ export class Inventory {
 
   getStatusColor(status: string): string {
     switch (status) {
-      case 'Active': return 'green';
+      case 'Active': return 'orange';
       case 'Low Stock': return 'volcano';
       case 'Out of Stock': return 'red';
       default: return 'default';

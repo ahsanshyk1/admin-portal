@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NzLayoutModule, NzSiderComponent } from 'ng-zorro-antd/layout';
+// Removes unused imports
 import { inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -12,13 +12,14 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @Component({
   selector: 'app-nav',
-  imports: [NzLayoutModule, RouterLink, RouterLinkActive, NzSiderComponent, NzIconModule, CommonModule, NzButtonModule, NzAvatarModule, NzDropDownModule],
+  imports: [RouterLink, RouterLinkActive, NzIconModule, CommonModule, NzButtonModule, NzAvatarModule, NzDropDownModule],
   templateUrl: './nav.html',
   styleUrl: './nav.less',
 })
 export class Nav {
   private tokenKey = 'authToken';
   private router = inject(Router);
+  isSidebarOpen = false;
 
   menuItems = [
     { label: 'Dashboard', icon: 'dashboard', link: '/dashboard' },
@@ -37,5 +38,13 @@ export class Nav {
   onLogout() {
     localStorage.removeItem(this.tokenKey);
     this.router.navigate(['/login']);
+  }
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
   }
 }

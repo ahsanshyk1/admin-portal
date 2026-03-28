@@ -4,10 +4,16 @@
   padding: 8px 0;
 
   .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 16px;
     margin-bottom: 32px;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
 
     h1 {
       font-size: 28px;
@@ -22,8 +28,13 @@
     }
 
     .export-group {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
       gap: 12px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
 
       button {
         height: 40px;
@@ -44,7 +55,7 @@
 
     .section-card {
       padding: 0;
-      overflow: hidden;
+      overflow-x: auto;
 
       .section-header {
         padding: 20px 32px;
@@ -87,7 +98,7 @@
     }
 
     .price {
-      color: #059669;
+      color: #d97d26;
     }
 
     .status-tag {

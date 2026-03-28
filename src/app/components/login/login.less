@@ -1,14 +1,19 @@
 @import "../../../less/variables.less";
 
 .login-wrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   height: 100vh;
   background: #ffffff;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .login-aside {
   flex: 1;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #f79e44 0%, #d97d26 100%);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,15 +1,18 @@
-<nz-layout class="app-layout">
+<div class="app-layout">
   @if(isAuthenticated()){
-
-  <nz-sider nzTheme="light" [nzWidth]="260" class="sidebar">
+  <div class="sidebar-backdrop" *ngIf="isSidebarOpen" (click)="closeSidebar()"></div>
+  <aside class="sidebar" [class.open]="isSidebarOpen">
     <div class="sidebar-wrapper">
       <div class="logo">
-        <img src="assets/svg/logo.svg" alt="Logo" />
+        <a routerLink="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none;" (click)="closeSidebar()">
+          <img src="assets/svg/logo.svg" alt="Battery Portal Logo" style="height: 36px; width: auto;" />
+          <span style="font-weight: 700; font-size: 18px; color: #1e293b; letter-spacing: -0.5px;">Battery Portal</span>
+        </a>
       </div>
 
       <nav class="sidebar-menu">
         <ul nz-menu nzMode="inline">
-          <li nz-menu-item *ngFor="let item of menuItems" [routerLink]="item.link" routerLinkActive="selected">
+          <li nz-menu-item *ngFor="let item of menuItems" [routerLink]="item.link" routerLinkActive="selected" (click)="closeSidebar()">
             <nz-icon [nzType]="item.icon" nzTheme="outline"></nz-icon>
             {{ item.label }}
           </li>
@@ -31,7 +34,7 @@
         </div>
       </div>
     </div>
-  </nz-sider>
+  </aside>
 
   <nz-dropdown-menu #profileMenu="nzDropdownMenu">
     <ul nz-menu class="profile-dropdown-menu">
@@ -49,16 +52,23 @@
       </li>
     </ul>
   </nz-dropdown-menu>
-
-
-
   }
+  
   <!-- Content -->
-  <nz-content class="inner-content" [class.auth-bg]="isAuthenticated()">
+  <main class="inner-content" [class.auth-bg]="isAuthenticated()">
     @if(isAuthenticated()){
+      <div class="mobile-header">
+        <div class="mobile-logo">
+          <img src="assets/svg/logo.svg" alt="Logo" />
+          <span>Battery Portal</span>
+        </div>
+        <button nz-button nzType="text" class="menu-toggle" (click)="toggleSidebar()">
+          <span nz-icon nzType="menu" nzTheme="outline"></span>
+        </button>
+      </div>
     }
     <div [class.main-content-area]="isAuthenticated()">
       <ng-content></ng-content>
     </div>
-  </nz-content>
-</nz-layout>
+  </main>
+</div>
